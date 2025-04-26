@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Prodi :</label>
-                        {{ $mahasiswa->prodi }}
+                        {{ $mahasiswa->prodi->nama_prodi }}
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">TTL :</label>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Foto :</label><br>
-                        <img src="{{ url('assets/fotodosen/' . $mahasiswa->foto_m) }}" alt="Foto Dosen" width="200px">
+                        <img src="{{ url('assets/fotomahasiswa/' . $mahasiswa->foto_m) }}" alt="Foto Dosen" width="200px">
                     </div>
                 </div>
                 <!-- Card footer -->

@@ -40,7 +40,14 @@
 
                         <div class="item-list mb-3">
                             <label>Prodi</label>
-                            <input type="text" name="prodi" class="form-control" required>
+                            <select name="prodi" class="form-control" required>
+                                <option value="">-- Pilih Prodi --</option>
+                                @foreach ($prodi as $p)
+                                    <option value="{{ $p->id }}" {{ old('prodi', $mahasiswa->id_prodi ?? '') == $p->id ? 'selected' : '' }}>
+                                        {{ $p->nama_prodi }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="item-list mb-3">

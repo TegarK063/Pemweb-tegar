@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nim')->primary();
             $table->string('nama')->nullable();
             $table->unsignedBigInteger('id_jurusan')->nullable();
-            $table->string('prodi')->nullable();
+            $table->unsignedBigInteger('id_prodi')->nullable();
             $table->string('ttl')->nullable();
             $table->string('alamat')->nullable();
             $table->string('agama')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('foto_m')->nullable();
 
             $table->foreign('id_jurusan')->references('id')->on('tb_jurusan')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id')->on('tb_prodi')->onDelete('cascade');
         });
         // }
     }

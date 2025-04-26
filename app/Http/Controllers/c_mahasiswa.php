@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\m_mahasiswa;
 use App\Models\m_jurusan;
+use App\Models\m_prodi;
 
 class c_mahasiswa extends Controller
 {
@@ -18,26 +19,26 @@ class c_mahasiswa extends Controller
     // Menampilkan semua mahasiswa
     public function mahasiswas()
     {
-        $mahasiswa = $this->m_mahasiswa->with('jurusan')->get(); // Eager loading relasi jurusan
+        $mahasiswa = $this->m_mahasiswa->with('jurusan', 'prodi')->get(); // Eager loading relasi jurusan
         return view('v_mahasiswa', compact('mahasiswa'));
     }
 
     public function tampilmahasiswa()
     {
-        $mahasiswa = $this->m_mahasiswa->with('jurusan')->get(); // Eager loading relasi jurusan
+        $mahasiswa = $this->m_mahasiswa->with('jurusan', 'prodi')->get(); // Eager loading relasi jurusan
         return view('mahasiswa.v_mahasiswa', compact('mahasiswa'));
     }
 
     public function cetakpdf()
     {
-        $mahasiswa = $this->m_mahasiswa->with('jurusan')->get(); // Eager loading relasi jurusan
+        $mahasiswa = $this->m_mahasiswa->with('jurusan', 'prodi')->get(); // Eager loading relasi jurusan
         return view('admin.mahasiswapdf', compact('mahasiswa'));
     }
 
     // Menampilkan detail mahasiswa
     public function detail($nim)
     {
-        $mahasiswa = $this->m_mahasiswa->with('jurusan')->find($nim);
+        $mahasiswa = $this->m_mahasiswa->with('jurusan', 'prodi')->find($nim);
         if (!$mahasiswa) {
             abort(404);
         }
@@ -48,7 +49,8 @@ class c_mahasiswa extends Controller
     public function tambah()
     {
         $jurusan = m_jurusan::all(); // Mengambil semua data jurusan
-        return view('v_tambahmahasiswa', compact('jurusan'));
+        $prodi = m_prodi::all(); // Mengambil semua data prodi
+        return view('v_tambahmahasiswa', compact('jurusan', 'prodi'));
     }
 
     // Menyimpan data mahasiswa baru
@@ -76,7 +78,7 @@ class c_mahasiswa extends Controller
             'nim' => $request->nim,
             'nama' => $request->nama,
             'id_jurusan' => $request->jurusan,
-            'prodi' => $request->prodi,
+            'id_prodi' => $request->prodi,
             'ttl' => $request->ttl,
             'alamat' => $request->alamat,
             'agama' => $request->agama,
@@ -94,10 +96,11 @@ class c_mahasiswa extends Controller
     {
         $mahasiswa = $this->m_mahasiswa->find($nim);
         $jurusan = m_jurusan::all(); // Mengambil semua data jurusan
+        $prodi = m_prodi::all(); // Mengambil semua data prodi
         if (!$mahasiswa) {
             abort(404);
         }
-        return view('v_editmahasiswa', compact('mahasiswa', 'jurusan'));
+        return view('v_editmahasiswa', compact('mahasiswa', 'jurusan', 'prodi'));
     }
 
     // Mengupdate data mahasiswa
@@ -130,7 +133,7 @@ class c_mahasiswa extends Controller
             'nim' => $request->nim,
             'nama' => $request->nama,
             'id_jurusan' => $request->jurusan,
-            'prodi' => $request->prodi,
+            'id_prodi' => $request->prodi,
             'ttl' => $request->ttl,
             'alamat' => $request->alamat,
             'agama' => $request->agama,

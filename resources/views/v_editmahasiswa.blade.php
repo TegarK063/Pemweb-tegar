@@ -34,8 +34,15 @@
                         </select>
                     </div>
                     <div class="form-box">
-                        <label>Prodi</label>
-                        <input type="text" name="prodi" value="{{ $mahasiswa->prodi }}">
+                        <label for="">Prodi</label>
+                        <select name="prodi" class="form-control">
+                            @foreach ($prodi as $p)
+                                <option value="{{ $p->id }}"
+                                    {{ $p->id == $mahasiswa->id_prodi ? 'selected' : '' }}>
+                                    {{ $p->nama_prodi }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-box">
                         <label>Tempat Tanggal Lahir</label>
