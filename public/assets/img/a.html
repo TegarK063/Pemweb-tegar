@@ -1,0 +1,70 @@
+m_dosen
+// public function store(Request $request) {
+    //     $file = request()->foto_dosen;
+    //     $fileName = request()->nip .' . '. $file->extension();
+    //     $file->move(public_path('assets/fotodosen'), $fileName);
+
+    //     DB::table("tb_dosen")->insert([
+    //         'id_dosen' => $request->id_dosen,
+    //         'nip' => $request->nip, 
+    //         'nama_dosen' => $request->nama_dosen,
+    //         'mata_kuliah' => $request->mata_kuliah,
+    //         'foto_dosen' => $fileName,
+    //     ]);
+    //     return redirect('dosen');
+    // }
+
+// public function editData($id_dosen) {
+    //     return DB::table('tb_dosen')->where('id_dosen', $id_dosen)->get();
+    // }
+    // public function updateData (Request $request) {
+    //     DB::table("tb_dosen")->where('id_dosen',$request->id_dosen)->update([
+    //         // 'id_dosen' => $request->id_dosen,
+    //         'nip' => $request->nip,
+    //         'nama_dosen' => $request->nama_dosen,
+    //         'mata_kuliah' => $request->mata_kuliah
+    //     ]);
+    //     return redirect('dosen');
+    // }
+c_dosen
+// public function edit($id_dosen)
+// {
+//     $dosen = $this->m_dosen->editData($id_dosen);
+//     return view('v_editdosen', ['dosen' => $dosen]);
+// }
+
+// public function update(Request $request)
+// {
+//     // Validasi data
+//     $request->validate([
+//         // 'id_dosen' => 'required',
+//         'nip' => 'required',
+//         'nama_dosen' => 'required',
+//         'mata_kuliah' => 'required'
+//     ]);
+//     // Panggil fungsi `store()` di model `m_dosen`
+//     $this->m_dosen->updateData($request);
+
+//     // Redirect ke halaman daftar dosen
+//     return redirect('/dosen')->with('success', 'Data dosen berhasil diUpdate!');
+// }
+
+// public function store(Request $request)
+    // {
+    //     // Validasi data
+    //     $request->validate([
+    //         'id_dosen' => 'required',
+    //         'nip' => 'required',
+    //         'nama_dosen' => 'required',
+    //         'mata_kuliah' => 'required',
+    //         'foto_dosen' => 'required|mimes:jpg,jpeg,png,bmp|max:1024',
+    //     ]);
+
+    //     // Panggil fungsi `store()` di model `m_dosen`
+    //     $this->m_dosen->store($request);
+
+    //     // Redirect ke halaman daftar dosen
+    //     return redirect('/dosen')->with('success', 'Data dosen berhasil ditambahkan!');
+    // }
+
+    
