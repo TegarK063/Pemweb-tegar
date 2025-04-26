@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-box">
                         <label for="">Jurusan</label>
-                        <select name="jurusan" class="form-control">
+                        <select id="jurusan" name="jurusan" class="form-control">
                             @foreach ($jurusan as $j)
                                 <option value="{{ $j->id }}"
                                     {{ $j->id == $mahasiswa->id_jurusan ? 'selected' : '' }}>
@@ -33,15 +33,10 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-box">
-                        <label for="">Prodi</label>
-                        <select name="prodi" class="form-control">
-                            @foreach ($prodi as $p)
-                                <option value="{{ $p->id }}"
-                                    {{ $p->id == $mahasiswa->id_prodi ? 'selected' : '' }}>
-                                    {{ $p->nama_prodi }}
-                                </option>
-                            @endforeach
+                    <div class="item-list mb-3">
+                        <label>Prodi</label>
+                        <select name="prodi" id="prodi" class="form-control" required>
+                            <option value="">-- Pilih Prodi --</option>
                         </select>
                     </div>
                     <div class="form-box">
@@ -83,4 +78,29 @@
             </form>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#jurusan').on('change', function() {
+            var jurusanID = $(this).val();
+            if (jurusanID) {
+                $.ajax({
+                    url: '/getProdi/' + jurusanID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#prodi').empty();
+                        $('#prodi').append('<option value="">-- Pilih Prodi --</option>');
+                        $.each(data, function(key, value) {
+                            $('#prodi').append('<option value="' + value.id + '">' + value
+                                .nama_prodi + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#prodi').empty();
+                $('#prodi').append('<option value="">-- Pilih Prodi --</option>');
+            }
+        });
+    </script>
 @endsection

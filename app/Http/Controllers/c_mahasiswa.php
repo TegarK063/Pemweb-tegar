@@ -49,8 +49,8 @@ class c_mahasiswa extends Controller
     public function tambah()
     {
         $jurusan = m_jurusan::all(); // Mengambil semua data jurusan
-        $prodi = m_prodi::all(); // Mengambil semua data prodi
-        return view('v_tambahmahasiswa', compact('jurusan', 'prodi'));
+        // $prodi = m_prodi::all(); // Mengambil semua data prodi
+        return view('v_tambahmahasiswa', compact('jurusan',));
     }
 
     // Menyimpan data mahasiswa baru
@@ -96,11 +96,11 @@ class c_mahasiswa extends Controller
     {
         $mahasiswa = $this->m_mahasiswa->find($nim);
         $jurusan = m_jurusan::all(); // Mengambil semua data jurusan
-        $prodi = m_prodi::all(); // Mengambil semua data prodi
+        // $prodi = m_prodi::all(); // Mengambil semua data prodi
         if (!$mahasiswa) {
             abort(404);
         }
-        return view('v_editmahasiswa', compact('mahasiswa', 'jurusan', 'prodi'));
+        return view('v_editmahasiswa', compact('mahasiswa', 'jurusan'));
     }
 
     // Mengupdate data mahasiswa
@@ -151,7 +151,13 @@ class c_mahasiswa extends Controller
         $this->m_mahasiswa->find($nim)->delete();
         return redirect('/mahasiswa')->with('success', 'Data mahasiswa berhasil dihapus!');
     }
-    function tampildashboard () {
+    function tampildashboard()
+    {
         return view('mahasiswa.v_dashboard');
+    }
+    public function getProdi($id_jurusan)
+    {
+        $prodi = m_prodi::where('id_jurusan', $id_jurusan)->get();
+        return response()->json($prodi);
     }
 }

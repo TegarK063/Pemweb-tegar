@@ -28,10 +28,11 @@
 
                         <div class="item-list mb-3">
                             <label>Jurusan</label>
-                            <select name="jurusan" class="form-control" required>
+                            <select name="jurusan" id="jurusan" class="form-control" required>
                                 <option value="">-- Pilih Jurusan --</option>
                                 @foreach ($jurusan as $j)
-                                    <option value="{{ $j->id }}" {{ old('jurusan', $mahasiswa->id_jurusan ?? '') == $j->id ? 'selected' : '' }}>
+                                    <option value="{{ $j->id }}"
+                                        {{ old('jurusan', $mahasiswa->id_jurusan ?? '') == $j->id ? 'selected' : '' }}>
                                         {{ $j->nama_jurusan }}
                                     </option>
                                 @endforeach
@@ -40,13 +41,8 @@
 
                         <div class="item-list mb-3">
                             <label>Prodi</label>
-                            <select name="prodi" class="form-control" required>
+                            <select name="prodi" id="prodi" class="form-control" required>
                                 <option value="">-- Pilih Prodi --</option>
-                                @foreach ($prodi as $p)
-                                    <option value="{{ $p->id }}" {{ old('prodi', $mahasiswa->id_prodi ?? '') == $p->id ? 'selected' : '' }}>
-                                        {{ $p->nama_prodi }}
-                                    </option>
-                                @endforeach
                             </select>
                         </div>
 
@@ -84,8 +80,7 @@
                             <label>Foto Mahasiswa</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="foto_m" class="custom-file-input" id="inputfilee"
-                                        required>
+                                    <input type="file" name="foto_m" class="custom-file-input" id="inputfilee" required>
                                     <label class="custom-file-label" for="inputfilee">Choose File</label>
                                 </div>
                             </div>
@@ -99,4 +94,29 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#jurusan').on('change', function() {
+            var jurusanID = $(this).val();
+            if (jurusanID) {
+                $.ajax({
+                    url: '/getProdi/' + jurusanID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#prodi').empty();
+                        $('#prodi').append('<option value="">-- Pilih Prodi --</option>');
+                        $.each(data, function(key, value) {
+                            $('#prodi').append('<option value="' + value.id + '">' + value
+                                .nama_prodi + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#prodi').empty();
+                $('#prodi').append('<option value="">-- Pilih Prodi --</option>');
+            }
+        });
+    </script>
 @endsection
