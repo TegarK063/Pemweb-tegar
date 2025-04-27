@@ -33,7 +33,7 @@
                                 <td>{{ $data->nim }}</td>
                                 <td>{{ $data->nama }}</td>
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
-                                <td>{{ $data->prodi }}</td>
+                                <td>{{ $data->prodi->nama_prodi }}</td>
                                 <td>{{ $data->ttl }}</td>
                                 <td>{{ $data->alamat }}</td>
                                 <td>{{ $data->agama }}</td>
