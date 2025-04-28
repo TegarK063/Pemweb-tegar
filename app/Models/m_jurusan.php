@@ -13,6 +13,9 @@ class m_jurusan extends Model
     public function mahasiswa() {
         return $this->hasMany(m_mahasiswa::class, 'id_jurusan');
     }
+    public function dosen() {
+        return $this->hasMany(m_dosen::class, 'id_jurusan');
+    }
     public function prodi() {
         return $this->hasMany(m_prodi::class, 'id_jurusan');
     }

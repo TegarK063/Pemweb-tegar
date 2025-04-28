@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\m_dosen;
+use App\Models\m_jurusan;
+use App\Models\m_prodi;
+use App\Models\m_matakuliah;
 
 class c_dosen extends Controller
 {
@@ -14,37 +17,40 @@ class c_dosen extends Controller
     }
     public function dosens()
     {
-        $data = [
-            'dosen' => $this->m_dosen->alldata(),
-        ];
-        return view('v_dosen', $data);
+        $dosen = $this->m_dosen->with('jurusan', 'prodi', 'matakuliah')->get();
+        return view('v_dosen', compact('dosen'));
     }
     public function tampildosens()
     {
-        $data = [
-            'dosen' => $this->m_dosen->alldata(),
-        ];
-        return view('dosen.v_dosen', $data);
+        $dosen = $this->m_dosen->with('jurusan', 'prodi', 'matakuliah')->get();
+        return view('dosen.v_dosen', compact('dosen'));
     }
     public function detail($id_dosen)
     {
-        if (!$this->m_dosen->detailData($id_dosen)) {
+        $dosen = $this->m_dosen->with('matakuliah', 'jurusan', 'prodi')->find($id_dosen);
+
+        if (!$dosen) {
             abort(404);
         }
-        $data = ['dosen' => $this->m_dosen->detailData($id_dosen)];
+
+        $data = ['dosen' => $dosen];
         return view('v_detaildosen', $data);
     }
+
     public function tambah()
     {
-        return view('v_tambah');
+        $jurusan = m_jurusan::all();
+        $mata_kuliah = m_matakuliah::all();
+        return view('v_tambah', compact('jurusan', 'mata_kuliah'));
     }
     public function store(Request $request)
     {
         $request->validate([
-            // 'id_dosen' => 'required',
             'nip' => 'required',
             'nama_dosen' => 'required',
             'mata_kuliah' => 'required',
+            'jurusan' => 'required',
+            'prodi' => 'required',
             'foto_dosen' => 'required|image',
         ]);
 
@@ -52,58 +58,53 @@ class c_dosen extends Controller
         $fileName = $request->nip . '.' . $file->extension();
         $file->move(public_path('assets/fotodosen'), $fileName);
 
-        $this->m_dosen->store([
-            // 'id_dosen' => $request->id_dosen,
+        m_dosen::create([
             'nip' => $request->nip,
             'nama_dosen' => $request->nama_dosen,
-            'mata_kuliah' => $request->mata_kuliah,
+            'id_matakuliah' => $request->mata_kuliah,
+            'id_jurusan' => $request->jurusan,
+            'id_prodi' => $request->prodi,
             'foto_dosen' => $fileName,
         ]);
+
         return redirect('/dosen')->with('success', 'Data dosen berhasil ditambahkan!');
     }
+
     public function edit($id_dosen)
     {
         $dosen = $this->m_dosen->detailData($id_dosen);
+        $jurusan = m_jurusan::all();
+        $mata_kuliah = m_matakuliah::all();
         abort_if(!$dosen, 404);
-        return view('v_editdosen', ['dosen' => $dosen]);
+        return view('v_editdosen', ['dosen' => $dosen], compact('jurusan', 'mata_kuliah'));
     }
-    public function update($id_dosen)
+    public function update(Request $request, $id_dosen)
     {
-        Request()->validate([
-            // 'id_dosen' => 'required',
+        $request->validate([
             'nip' => 'required',
             'nama_dosen' => 'required',
             'mata_kuliah' => 'required',
+            'jurusan' => 'required',
+            'prodi' => 'required',
             'foto_dosen' => 'nullable|image',
-        ], [
-            // 'id_dosen' => 'required',
-            'nip' => 'required',
-            'nama_dosen' => 'required',
-            'mata_kuliah' => 'required',
-            'foto_dosen' => 'required|image',
         ]);
-        if (Request()->foto_dosen <> '') {
-            $file = Request()->foto_dosen;
-            $fileName = Request()->id_dosen . '.' . $file->extension();
-            $file->move(public_path('assets/fotodosen'), $fileName);
 
-            $data = [
-                'id_dosen' => Request()->id_dosen,
-                'nip' => Request()->nip,
-                'nama_dosen' => Request()->nama_dosen,
-                'mata_kuliah' => Request()->mata_kuliah,
-                'foto_dosen' => $fileName,
-            ];
-            $this->m_dosen->editData($id_dosen, $data);
-        } else {
-            $data = [
-                'id_dosen' => Request()->id_dosen,
-                'nip' => Request()->nip,
-                'nama_dosen' => Request()->nama_dosen,
-                'mata_kuliah' => Request()->mata_kuliah,
-            ];
-            $this->m_dosen->editData($id_dosen, $data);
+        $mahasiswa = $this->m_dosen->find($id_dosen);
+
+        if ($request->hasFile('foto_dosen')) {
+            $file = $request->file('foto_dosen');
+            $fileName = $request->nip . '.' . $file->extension();
+            $file->move(public_path('assets/fotodosen'), $fileName);
+            $mahasiswa->foto_dosen = $fileName;
         }
+
+        $mahasiswa->update([
+            'nip' => $request->nip,
+            'nama_dosen' => $request->nama_dosen,
+            'id_matakuliah' => $request->mata_kuliah,
+            'id_jurusan' => $request->jurusan,
+            'id_prodi' => $request->prodi,
+        ]);
         return redirect('/dosen')->with('success', 'Data dosen berhasil diUpdate!');
     }
     public function hapus($id_dosen)
@@ -111,7 +112,13 @@ class c_dosen extends Controller
         $this->m_dosen->hapusData($id_dosen);
         return redirect('/dosen')->with('success', 'Data dosen berhasil diHapus!');
     }
-    function tampildashboard () {
+    function tampildashboard()
+    {
         return view('dosen.v_dashboard');
+    }
+    public function getProdi($id_jurusan)
+    {
+        $prodi = m_prodi::where('id_jurusan', $id_jurusan)->get();
+        return response()->json($prodi);
     }
 }

@@ -26,7 +26,15 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Mata Kuliah :</label>
-                        {{ $dosen->mata_kuliah }}
+                        {{ $dosen->matakuliah->nama_matakuliah }}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Mata Kuliah :</label>
+                        {{ $dosen->jurusan->nama_jurusan }}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Mata Kuliah :</label>
+                        {{ $dosen->prodi->nama_prodi }}
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Foto :</label><br>

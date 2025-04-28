@@ -10,6 +10,21 @@ use Illuminate\http\Request;
 class m_dosen extends Model
 {
     // use HasFactory;
+    protected $table = 'tb_dosen';
+    protected $primaryKey = 'id_dosen';
+    protected $fillable = ['nip', 'nama_dosen', 'id_matakuliah', 'foto_dosen', 'id_jurusan', 'id_prodi'];
+    public $timestamps = false; // Disable timestamps
+
+    public function jurusan () {
+        return $this->belongsTo(m_jurusan::class, 'id_jurusan');
+    }
+    public function prodi () {
+        return $this->belongsTo(m_prodi::class, 'id_prodi');
+    }
+    public function matakuliah () {
+        return $this->belongsTo(m_matakuliah::class, 'id_matakuliah', 'id_matakuliah');
+    }
+
     public function alldata()
     {
         return DB::table("tb_dosen")->get();

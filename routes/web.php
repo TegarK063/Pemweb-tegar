@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/mahasiswa/update/{nim}', [c_mahasiswa::class, 'update']);
     Route::get('/mahasiswa/hapus/{nim}', [c_mahasiswa::class, 'hapus']);
     Route::get('/getProdi/{id_jurusan}', [c_mahasiswa::class, 'getProdi']);
+    Route::get('/getProdi/{id_jurusan}', [c_dosen::class, 'getProdi']);
 });
 
 // MAHASISWA

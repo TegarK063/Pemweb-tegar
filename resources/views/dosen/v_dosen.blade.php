@@ -39,8 +39,9 @@
                             <th>NIP</th>
                             <th>Nama Dosen</th>
                             <th>Mata Kuliah</th>
+                            <th>Jurusan</th>
+                            <th>Prodi</th>
                             <th>Foto Dosen</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,14 +51,11 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nip }}</td>
                                 <td>{{ $data->nama_dosen }}</td>
-                                <td>{{ $data->mata_kuliah }}</td>
+                                <td>{{ $data->matakuliah->nama_matakuliah }}</td>
+                                <td>{{ $data->jurusan->nama_jurusan }}</td>
+                                <td>{{ $data->prodi->nama_prodi }}</td>
                                 <td><img src="{{ url('assets/fotodosen/' . $data->foto_dosen) }}" alt=""
                                         width="100px"></td>
-                                <td>
-                                    <a href="{{ url('/dosen/detail/' . $data->id_dosen) }}" class="btn btn-info">Detail</a>
-                                    <a href="{{ url('/dosen/edit/' . $data->id_dosen) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ url('/dosen/hapus/' . $data->id_dosen) }}" class="btn btn-danger">Hapus</a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

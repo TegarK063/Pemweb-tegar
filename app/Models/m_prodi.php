@@ -18,5 +18,9 @@ class m_prodi extends Model
     {
         return $this->belongsTo(m_jurusan::class, 'id_jurusan', 'id');
     }
-
+    // satu prodi punya banyak mata kuliah
+    public function matakuliah()
+    {
+        return $this->hasMany(m_matakuliah::class, 'id_prodi', 'id');
+    }
 }
