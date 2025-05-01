@@ -14,6 +14,7 @@
                             <th>No</th>
                             <th>NIM</th>
                             <th>Nama</th>
+                            <th>Jenis Kelamin</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
                             <th>Tempat tanggal lahir</th>
@@ -32,6 +33,15 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nim }}</td>
                                 <td>{{ $data->nama }}</td>
+                                <td>
+                                    @if ($data->jenis_kelamin == 'L')
+                                        Laki-laki
+                                    @elseif($data->jenis_kelamin == 'P')
+                                        Perempuan
+                                    @else
+                                        Tidak Diketahui
+                                    @endif
+                                </td>
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
                                 <td>{{ $data->prodi->nama_prodi }}</td>
                                 <td>{{ $data->ttl }}</td>

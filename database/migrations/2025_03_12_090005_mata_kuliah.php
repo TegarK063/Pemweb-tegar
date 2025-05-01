@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('kode_matakuliah')->unique();
             $table->string('nama_matakuliah');
             $table->integer('sks');
-            $table->integer('semester');
-            $table->string('kelas');
+            $table->unsignedBigInteger('id_kelas');
+            $table->unsignedBigInteger('id_semester');
             $table->unsignedBigInteger('id_prodi')->nullable();
             $table->timestamps();
             $table->foreign('id_prodi')->references('id')->on('tb_prodi')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id_kelas')->on('tb_kelas')->onDelete('cascade');
+            $table->foreign('id_semester')->references('id_semester')->on('tb_semester')->onDelete('cascade');
         });
     }
 
