@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('tb_mahasiswa', function (Blueprint $table) {
             $table->string('nim')->primary();
             $table->string('nama')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->unsignedBigInteger('id_jurusan')->nullable();
             $table->unsignedBigInteger('id_prodi')->nullable();
             $table->string('ttl')->nullable();

@@ -59,6 +59,7 @@ class c_mahasiswa extends Controller
         $request->validate([
             'nim' => 'required|unique:tb_mahasiswa',
             'nama' => 'required',
+            'jenis_kelamin' => 'required|in:L,P',
             'jurusan' => 'required',
             'prodi' => 'required',
             'ttl' => 'required',
@@ -77,6 +78,7 @@ class c_mahasiswa extends Controller
         $this->m_mahasiswa->create([
             'nim' => $request->nim,
             'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'id_jurusan' => $request->jurusan,
             'id_prodi' => $request->prodi,
             'ttl' => $request->ttl,
@@ -109,6 +111,7 @@ class c_mahasiswa extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
+            'jenis_kelamin' => 'required|in:L,P',
             'jurusan' => 'required',
             'prodi' => 'required',
             'ttl' => 'required',
@@ -132,6 +135,7 @@ class c_mahasiswa extends Controller
         $mahasiswa->update([
             'nim' => $request->nim,
             'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'id_jurusan' => $request->jurusan,
             'id_prodi' => $request->prodi,
             'ttl' => $request->ttl,

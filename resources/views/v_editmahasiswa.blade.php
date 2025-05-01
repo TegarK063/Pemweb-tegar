@@ -22,6 +22,17 @@
                         <label>Nama</label>
                         <input type="text" name="nama" value="{{ $mahasiswa->nama }}">
                     </div>
+                    <div class="item-list mb-3">
+                        <label>Jenis Kelamin</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="L" {{ $mahasiswa->jenis_kelamin == 'L' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="laki_laki">Laki-laki</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="P" {{ $mahasiswa->jenis_kelamin == 'P' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="perempuan">Perempuan</label>
+                        </div>
+                    </div>
                     <div class="form-box">
                         <label for="">Jurusan</label>
                         <select id="jurusan" name="jurusan" class="form-control">

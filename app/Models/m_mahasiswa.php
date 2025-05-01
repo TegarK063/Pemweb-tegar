@@ -10,7 +10,7 @@ class m_mahasiswa extends Model
 {
     protected $table = 'tb_mahasiswa';
     protected $primaryKey = 'nim';
-    protected $fillable = ['nim', 'nama', 'id_jurusan', 'id_prodi', 'ttl', 'alamat','agama', 'tingkat', 'semester', 'no_hp', 'foto_m'];
+    protected $fillable = ['nim', 'nama', 'jenis_kelamin', 'id_jurusan', 'id_prodi', 'ttl', 'alamat','agama', 'tingkat', 'semester', 'no_hp', 'foto_m'];
     public $timestamps = false; // Disable timestamps
     
     public function jurusan () {
