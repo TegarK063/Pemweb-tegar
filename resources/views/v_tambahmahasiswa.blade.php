@@ -29,11 +29,11 @@
                         <div class="item-list mb-3">
                             <label>Jenis Kelamin</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki_laki" value="L" {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }}>
+                                <input required class="form-check-input" type="radio" name="jenis_kelamin" id="laki_laki" value="L" {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="laki_laki">Laki-laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="P" {{ old('jenis_kelamin') == 'P' ? 'checked' : '' }}>
+                                <input required class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="P" {{ old('jenis_kelamin') == 'P' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
                         </div>
