@@ -19,7 +19,11 @@
                         <label for="">Nama Dosen</label>
                         <input type="text" name="nama_dosen" value="{{ $dosen->nama_dosen }}">
                     </div>
-                    <div class="item-list mb-3">
+                    <div class="form-box">
+                        <label for="">Bidang Keahlian</label>
+                        <input type="text" name="bidang_keahlian" value="{{ $dosen->bidang_keahlian }}">
+                    </div>
+                    {{-- <div class="item-list mb-3">
                         <label>Mata Kuliah</label>
                         <select name="mata_kuliah" class="form-control" required>
                             <option value="">-- Pilih Mata Kuliah --</option>
@@ -30,7 +34,7 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="item-list mb-3">
                         <label>Jurusan</label>

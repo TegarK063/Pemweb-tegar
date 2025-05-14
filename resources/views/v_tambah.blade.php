@@ -27,6 +27,11 @@
                         </div>
 
                         <div class="item-list mb-3">
+                            <label>Bidang Keahlian</label>
+                            <input type="text" name="bidang_keahlian" class="form-control" required>
+                        </div>
+
+                        {{-- <div class="item-list mb-3">
                             <label>Mata Kuliah</label>
                             <select name="mata_kuliah" class="form-control" required>
                                 <option value="">-- Pilih Mata Kuliah --</option>
@@ -37,7 +42,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="item-list mb-3">
                             <label>Jurusan</label>

@@ -25,9 +25,13 @@
                         {{ $dosen->nama_dosen }}
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputPassword1">Nama Dosen :</label>
+                        {{ $dosen->bidang_keahlian }}
+                    </div>
+                    {{-- <div class="form-group">
                         <label for="exampleInputFile">Mata Kuliah :</label>
                         {{ $dosen->matakuliah->nama_matakuliah }}
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="exampleInputFile">Mata Kuliah :</label>
                         {{ $dosen->jurusan->nama_jurusan }}

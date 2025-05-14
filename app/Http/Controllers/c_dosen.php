@@ -17,17 +17,17 @@ class c_dosen extends Controller
     }
     public function dosens()
     {
-        $dosen = $this->m_dosen->with('jurusan', 'prodi', 'matakuliah')->get();
+        $dosen = $this->m_dosen->with('jurusan', 'prodi')->get();
         return view('v_dosen', compact('dosen'));
     }
     public function tampildosens()
     {
-        $dosen = $this->m_dosen->with('jurusan', 'prodi', 'matakuliah')->get();
+        $dosen = $this->m_dosen->with('jurusan', 'prodi')->get();
         return view('dosen.v_dosen', compact('dosen'));
     }
     public function detail($id_dosen)
     {
-        $dosen = $this->m_dosen->with('matakuliah', 'jurusan', 'prodi')->find($id_dosen);
+        $dosen = $this->m_dosen->with( 'jurusan', 'prodi')->find($id_dosen);
 
         if (!$dosen) {
             abort(404);
@@ -40,15 +40,16 @@ class c_dosen extends Controller
     public function tambah()
     {
         $jurusan = m_jurusan::all();
-        $mata_kuliah = m_matakuliah::all();
-        return view('v_tambah', compact('jurusan', 'mata_kuliah'));
+        // $mata_kuliah = m_matakuliah::all();
+        return view('v_tambah', compact('jurusan'));
     }
     public function store(Request $request)
     {
         $request->validate([
             'nip' => 'required',
             'nama_dosen' => 'required',
-            'mata_kuliah' => 'required',
+            'bidang_keahlian' => 'required',
+            // 'mata_kuliah' => 'required',
             'jurusan' => 'required',
             'prodi' => 'required',
             'foto_dosen' => 'required|image',
@@ -61,7 +62,8 @@ class c_dosen extends Controller
         m_dosen::create([
             'nip' => $request->nip,
             'nama_dosen' => $request->nama_dosen,
-            'id_matakuliah' => $request->mata_kuliah,
+            'bidang_keahlian' => $request->bidang_keahlian,
+            // 'id_matakuliah' => $request->mata_kuliah,
             'id_jurusan' => $request->jurusan,
             'id_prodi' => $request->prodi,
             'foto_dosen' => $fileName,
@@ -74,16 +76,17 @@ class c_dosen extends Controller
     {
         $dosen = $this->m_dosen->detailData($id_dosen);
         $jurusan = m_jurusan::all();
-        $mata_kuliah = m_matakuliah::all();
+        // $mata_kuliah = m_matakuliah::all();
         abort_if(!$dosen, 404);
-        return view('v_editdosen', ['dosen' => $dosen], compact('jurusan', 'mata_kuliah'));
+        return view('v_editdosen', ['dosen' => $dosen], compact('jurusan'));
     }
     public function update(Request $request, $id_dosen)
     {
         $request->validate([
             'nip' => 'required',
             'nama_dosen' => 'required',
-            'mata_kuliah' => 'required',
+            'bidang_keahlian' => 'required',
+            // 'mata_kuliah' => 'required',
             'jurusan' => 'required',
             'prodi' => 'required',
             'foto_dosen' => 'nullable|image',
@@ -101,7 +104,8 @@ class c_dosen extends Controller
         $mahasiswa->update([
             'nip' => $request->nip,
             'nama_dosen' => $request->nama_dosen,
-            'id_matakuliah' => $request->mata_kuliah,
+            'bidang_keahlian' => $request->bidang_keahlian,
+            // 'id_matakuliah' => $request->mata_kuliah,
             'id_jurusan' => $request->jurusan,
             'id_prodi' => $request->prodi,
         ]);

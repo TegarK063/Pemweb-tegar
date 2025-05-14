@@ -18,7 +18,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama Dosen</th>
-                            <th>Mata Kuliah</th>
+                            <th>Bidang Keahlian</th>
+                            {{-- <th>Mata Kuliah</th> --}}
                             <th>Jurusan</th>
                             <th>Prodi</th>
                             <th>Foto Dosen</th>
@@ -32,7 +33,8 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nip }}</td>
                                 <td>{{ $data->nama_dosen }}</td>
-                                <td>{{ $data->matakuliah->nama_matakuliah }}</td>
+                                <td>{{ $data->bidang_keahlian }}</td>
+                                {{-- <td>{{ $data->matakuliah->nama_matakuliah }}</td> --}}
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
                                 <td>{{ $data->prodi->nama_prodi }}</td>
                                 <td><img src="{{ url('assets/fotodosen/' . $data->foto_dosen) }}" alt=""

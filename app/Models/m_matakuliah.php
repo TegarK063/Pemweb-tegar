@@ -17,10 +17,10 @@ class m_matakuliah extends Model
         return $this->belongsTo(m_prodi::class, 'id_prodi');
     }
     // satu mata kuliah punya banyak dosen
-    public function dosen()
-    {
-        return $this->hasMany(m_dosen::class, 'id_matakuliah', 'id_matakuliah');
-    }
+    // public function dosen()
+    // {
+    //     return $this->hasMany(m_dosen::class, 'id_matakuliah', 'id_matakuliah');
+    // }
     // satu mata kuliah punya banyak kelas
     public function kelas()
     {
