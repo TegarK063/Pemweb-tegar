@@ -10,7 +10,7 @@ class m_mahasiswa extends Model
 {
     protected $table = 'tb_mahasiswa';
     protected $primaryKey = 'nim';
-    protected $fillable = ['nim', 'nama', 'jenis_kelamin', 'id_jurusan', 'id_prodi', 'ttl', 'alamat','agama', 'tingkat', 'semester', 'no_hp', 'foto_m'];
+    protected $fillable = ['nim', 'nama', 'jenis_kelamin', 'id_jurusan', 'id_prodi', 'id_kelas', 'ttl', 'alamat','agama', 'tingkat', 'semester', 'no_hp', 'foto_m'];
     public $timestamps = false; // Disable timestamps
     
     public function jurusan () {
@@ -18,6 +18,9 @@ class m_mahasiswa extends Model
     }
     public function prodi () {
         return $this->belongsTo(m_prodi::class, 'id_prodi');
+    }
+    public function kelas () {
+        return $this->belongsTo(m_kelas::class, 'id_kelas', 'id_kelas');
     }
 
     public function alldata()

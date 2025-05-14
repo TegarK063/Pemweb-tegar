@@ -21,6 +21,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
+                            <th>Kelas</th>
                             <th>Tempat tanggal lahir</th>
                             <th>Alamat</th>
                             <th>Agama</th>
@@ -49,6 +50,7 @@
                                 </td>
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
                                 <td>{{ $data->prodi->nama_prodi }}</td>
+                                <td>{{ $data->kelas ? $data->kelas->nama_kelas : 'Tidak Diketahui' }}</td>
                                 <td>{{ $data->ttl }}</td>
                                 <td>{{ $data->alamat }}</td>
                                 <td>{{ $data->agama }}</td>

@@ -37,6 +37,10 @@
                         {{ $mahasiswa->prodi->nama_prodi }}
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputFile">Kelas :</label>
+                        {{ $mahasiswa->kelas->nama_kelas }}
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputFile">TTL :</label>
                         {{ $mahasiswa->ttl }}
                     </div>

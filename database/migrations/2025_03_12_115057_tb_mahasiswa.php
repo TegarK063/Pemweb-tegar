@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->unsignedBigInteger('id_jurusan')->nullable();
             $table->unsignedBigInteger('id_prodi')->nullable();
+            $table->unsignedBigInteger('id_kelas')->nullable();
             $table->string('ttl')->nullable();
             $table->string('alamat')->nullable();
             $table->string('agama')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
 
             $table->foreign('id_jurusan')->references('id')->on('tb_jurusan')->onDelete('cascade');
             $table->foreign('id_prodi')->references('id')->on('tb_prodi')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id_kelas')->on('tb_kelas')->onDelete('cascade');
         });
         // }
     }

@@ -37,7 +37,6 @@
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
                         </div>
-
                         <div class="item-list mb-3">
                             <label>Jurusan</label>
                             <select name="jurusan" id="jurusan" class="form-control" required>
@@ -55,6 +54,19 @@
                             <label>Prodi</label>
                             <select name="prodi" id="prodi" class="form-control" required>
                                 <option value="">-- Pilih Prodi --</option>
+                            </select>
+                        </div>
+
+                        <div class="item-list mb-3">
+                            <label>Kelas</label>
+                            <select name="kelas" class="form-control" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                @foreach ($kelas as $kelas)
+                                    <option value="{{ $kelas->id_kelas }}"
+                                        {{ old('kelas', $mahasiswa->id_kelas ?? '') == $kelas->id_kelas ? 'selected' : '' }}>
+                                        {{ $kelas->nama_kelas }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
