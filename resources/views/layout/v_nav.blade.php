@@ -67,6 +67,12 @@
             <span>Chart</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route ('admin.nilai') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Nilai</span>
+        </a>
+    </li>
     @endif
 
     <!-- Nav Item - User (Tampilkan jika role User) -->
