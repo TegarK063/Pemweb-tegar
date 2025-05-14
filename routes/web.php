@@ -20,7 +20,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ADMIN
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/cetakpdf', [c_mahasiswa::class, 'cetakpdf'])->name('admin.cetakpdf');
+    Route::get('/mahasiswa/export/pdf', [App\Http\Controllers\c_mahasiswa::class, 'exportPdf'])->name('mahasiswa.export.pdf');
+    // Route::get('/admin/cetakpdf', [c_mahasiswa::class, 'cetakpdf'])->name('admin.cetakpdf');
     Route::get('/admin/chart', [c_admin::class, 'tampilchart'])->name('admin.chart');
     Route::get('/admin/dashboard', [c_admin::class, 'tampildashboard'])->name('admin.dashboard');
     Route::get('/dosen', [c_dosen::class, 'dosens']);

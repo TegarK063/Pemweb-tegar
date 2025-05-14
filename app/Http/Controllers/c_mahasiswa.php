@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\m_mahasiswa;
 use App\Models\m_jurusan;
 use App\Models\m_prodi;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class c_mahasiswa extends Controller
 {
@@ -164,4 +165,11 @@ class c_mahasiswa extends Controller
         $prodi = m_prodi::where('id_jurusan', $id_jurusan)->get();
         return response()->json($prodi);
     }
+public function exportPdf()
+{
+    $mahasiswa = $this->m_mahasiswa->with(['jurusan', 'prodi'])->get();
+
+    $pdf = Pdf::loadView('admin.mahasiswapdf', compact('mahasiswa'));
+    return $pdf->stream('data_mahasiswa.pdf');
+}
 }

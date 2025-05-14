@@ -9,7 +9,7 @@
         <div class="card-body">
             <div class="nav-content d-flex justify-content-end">
                 <a href="{{ url('/mahasiswa/tambah') }}" class="btn btn-primary ">Tambah data</a>
-                <a href="{{ route('admin.cetakpdf') }}" class="btn btn-danger ">Export PDF</a>
+                <a href="{{ route('mahasiswa.export.pdf') }}" class="btn btn-danger">Export PDF</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
