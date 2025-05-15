@@ -12,7 +12,7 @@ class c_admin extends Controller
     function tampilchart () {
         return view('admin.v_chart');
     }
-    function tampilnilai () {
-        return view('admin.v_nilai');
-    }
+    // function tampilnilai () {
+    //     return view('admin.v_nilai');
+    // }
 }

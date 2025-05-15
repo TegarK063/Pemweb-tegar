@@ -19,4 +19,7 @@ class m_jurusan extends Model
     public function prodi() {
         return $this->hasMany(m_prodi::class, 'id_jurusan');
     }
+    public function nilai() {
+        return $this->hasMany(m_nilai::class, 'id_jurusan');
+    }
 }

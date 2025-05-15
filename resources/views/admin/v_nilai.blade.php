@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <div class="nav-content d-flex justify-content-end">
-                <a href="" class="btn btn-primary ">Tambah data</a>
+                <a href="{{ route ('admin.tambahnilai') }}" class="btn btn-primary ">Tambah data</a>
                 <a href="" class="btn btn-danger">Export PDF</a>
             </div>
             <div class="table-responsive">
@@ -28,39 +28,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- <?php $no = 1; ?>
-                        @foreach ($mahasiswa as $data)
+                        <?php $no = 1; ?>
+                        @foreach ($nilai as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->nim }}</td>
-                                <td>{{ $data->nama }}</td>
-                                <td>
-                                    @if ($data->jenis_kelamin == 'L')
-                                        Laki-laki
-                                    @elseif($data->jenis_kelamin == 'P')
-                                        Perempuan
-                                    @else
-                                        Tidak Diketahui
-                                    @endif
-                                </td>
+                                <td>{{ $data->dosen->nama_dosen }}</td>
+                                <td>{{ $data->matakuliah->nama_matakuliah }}</td>
+                                <td>{{ $data->semester->semester }}</td>
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
                                 <td>{{ $data->prodi->nama_prodi }}</td>
-                                <td>{{ $data->kelas ? $data->kelas->nama_kelas : 'Tidak Diketahui' }}</td>
-                                <td>{{ $data->ttl }}</td>
-                                <td>{{ $data->alamat }}</td>
-                                <td>{{ $data->agama }}</td>
-                                <td>{{ $data->tingkat }}</td>
-                                <td>{{ $data->semester }}</td>
-                                <td>{{ $data->no_hp }}</td>
-                                <td><img src="{{ url('assets/fotomahasiswa/' . $data->foto_m) }}" alt=""
-                                        width="100px"></td>
+                                <td>{{ $data->komposisi_nilai_lain }}</td>
+                                <td>{{ $data->komposisi_nilai_uts }}</td>
+                                <td>{{ $data->komposisi_nilai_uas }}</td>
                                 <td>
                                     <a href="{{ url('/mahasiswa/detail/' . $data->nim) }}" class="btn btn-info">Detail</a>
                                     <a href="{{ url('/mahasiswa/edit/' . $data->nim) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ url('/mahasiswa/hapus/' . $data->nim) }}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

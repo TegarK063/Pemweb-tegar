@@ -7,6 +7,7 @@ use App\Http\Controllers\c_mahasiswa;
 use App\Http\Controllers\c_barang;
 use App\Http\Controllers\c_contact;
 use App\Http\Controllers\c_home;
+use App\Http\Controllers\c_nilai;
 use App\Http\Controllers\c_user;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/mahasiswa/export/pdf', [App\Http\Controllers\c_mahasiswa::class, 'exportPdf'])->name('mahasiswa.export.pdf');
     // Route::get('/admin/cetakpdf', [c_mahasiswa::class, 'cetakpdf'])->name('admin.cetakpdf');
     Route::get('/admin/chart', [c_admin::class, 'tampilchart'])->name('admin.chart');
-    Route::get('/admin/nilai', [c_admin::class, 'tampilnilai'])->name('admin.nilai');
+    // Route::get('/admin/nilai', [c_admin::class, 'tampilnilai'])->name('admin.nilai');
+    Route::get('/admin/nilai', [c_nilai::class, 'tampilnilai'])->name('admin.nilai');
+    Route::get('/admin/tambahnilai', [c_nilai::class, 'tambahnilai'])->name('admin.tambahnilai');
+    Route::post('/admin/storenilai', [c_nilai::class, 'store'])->name('admin.storenilai');
     Route::get('/admin/dashboard', [c_admin::class, 'tampildashboard'])->name('admin.dashboard');
     Route::get('/dosen', [c_dosen::class, 'dosens']);
     Route::get('/dosen/detail/{id_dosen}', [c_dosen::class, 'detail']);

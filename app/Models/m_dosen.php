@@ -25,6 +25,10 @@ class m_dosen extends Model
     //     return $this->belongsTo(m_matakuliah::class, 'id_matakuliah', 'id_matakuliah');
     // }
 
+    public function nilai () {
+        return $this->hasMany(m_nilai::class, 'id_dosen', 'id_dosen');
+    }
+
     public function alldata()
     {
         return DB::table("tb_dosen")->get();

@@ -16,4 +16,7 @@ class m_semester extends Model
     {
         return $this->hasMany(m_matakuliah::class, 'id_semester', 'id_semester');
     }
+    public function nilai () {
+        return $this->hasMany(m_nilai::class, 'id_semester', 'id_semester');
+    }
 }

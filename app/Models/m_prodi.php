@@ -23,4 +23,7 @@ class m_prodi extends Model
     {
         return $this->hasMany(m_matakuliah::class, 'id_prodi', 'id');
     }
+    public function nilai() {
+        return $this->hasMany(m_nilai::class, 'id_prodi', 'id');
+    }
 }
