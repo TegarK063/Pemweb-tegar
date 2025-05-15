@@ -41,7 +41,7 @@
                                 <td>{{ $data->komposisi_nilai_uts }}</td>
                                 <td>{{ $data->komposisi_nilai_uas }}</td>
                                 <td>
-                                    <a href="{{ url('/mahasiswa/detail/' . $data->nim) }}" class="btn btn-info">Detail</a>
+                                    <a href="{{ url('/admin/detailnilai/' . $data->id_nilai) }}" class="btn btn-info">Detail</a>
                                     <a href="{{ url('/mahasiswa/edit/' . $data->nim) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ url('/mahasiswa/hapus/' . $data->nim) }}" class="btn btn-danger">Hapus</a>
                                 </td>

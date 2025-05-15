@@ -28,6 +28,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/nilai', [c_nilai::class, 'tampilnilai'])->name('admin.nilai');
     Route::get('/admin/tambahnilai', [c_nilai::class, 'tambahnilai'])->name('admin.tambahnilai');
     Route::post('/admin/storenilai', [c_nilai::class, 'store'])->name('admin.storenilai');
+    Route::get('/admin/detailnilai/{id_nilai}', [c_nilai::class, 'detailnilai'])->name('admin.detailnilai');
     Route::get('/admin/dashboard', [c_admin::class, 'tampildashboard'])->name('admin.dashboard');
     Route::get('/dosen', [c_dosen::class, 'dosens']);
     Route::get('/dosen/detail/{id_dosen}', [c_dosen::class, 'detail']);
