@@ -120,4 +120,15 @@ class c_nilai extends Controller
 
         return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil diupdate!');
     }
+    // Menghapus nilai
+    public function hapus($id_nilai)
+    {
+        $nilai = $this->m_nilai->find($id_nilai);
+        if ($nilai) {
+            $nilai->delete();
+            return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil dihapus!');
+        } else {
+            return redirect('/admin/nilai')->with('error', 'Data mahasiswa tidak ditemukan!');
+        }
+    }
 }

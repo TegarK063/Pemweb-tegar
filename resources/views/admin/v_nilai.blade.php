@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <div class="nav-content d-flex justify-content-end">
-                <a href="{{ route ('admin.tambahnilai') }}" class="btn btn-primary ">Tambah data</a>
+                <a href="{{ route('admin.tambahnilai') }}" class="btn btn-primary ">Tambah data</a>
                 <a href="" class="btn btn-danger">Export PDF</a>
             </div>
             <div class="table-responsive">
@@ -41,11 +41,41 @@
                                 <td>{{ $data->komposisi_nilai_uts }}</td>
                                 <td>{{ $data->komposisi_nilai_uas }}</td>
                                 <td>
-                                    <a href="{{ url('/admin/detailnilai/' . $data->id_nilai) }}" class="btn btn-info">Detail</a>
-                                    <a href="{{ url('/admin/editnilai/' . $data->id_nilai) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ url('/mahasiswa/hapus/' . $data->nim) }}" class="btn btn-danger">Hapus</a>
+                                    <a href="{{ url('/admin/detailnilai/' . $data->id_nilai) }}"
+                                        class="btn btn-info">Detail</a>
+                                    <a href="{{ url('/admin/editnilai/' . $data->id_nilai) }}"
+                                        class="btn btn-warning">Edit</a>
+                                    <!-- Trigger Modal -->
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#hapusModal{{ $data->id_nilai }}">
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="hapusModal{{ $data->id_nilai }}" tabindex="-1" role="dialog"
+                                aria-labelledby="hapusModalLabel{{ $data->id_nilai }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h5 class="modal-title" id="hapusModalLabel{{ $data->id_nilai }}">Konfirmasi Hapus
+                                        </h5>
+                                        <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin menghapus data nilai ini?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <a href="{{ url('/admin/hapusnilai/' . $data->id_nilai) }}" class="btn btn-danger">Ya,
+                                        Hapus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
