@@ -1,6 +1,5 @@
 @extends('layout.v_tamplate')
 @section('content')
-    <h1>Halaman Mahasiswa</h1>
     <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
