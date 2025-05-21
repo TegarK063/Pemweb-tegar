@@ -107,7 +107,7 @@
                     <input type="submit" value="Update Data" class="btn btn-primary">
                 </div>
                 <div class="card-footer">
-                    <a href="/mahasiswa"><button type="button" class="btn btn-secondary">Kembali</button></a>
+                    <a href="/admin/nilai"><button type="button" class="btn btn-secondary">Kembali</button></a>
                 </div>
             </form>
         </div>
