@@ -31,7 +31,9 @@ class m_nilai extends Model
     public function tahunakademi () {
         return $this->belongsTo(m_tahunakademi::class, 'id_tahunakademi');
     }
-
+    public function detailnilai () {
+        return $this->hasMany(m_detailnilai::class, 'id_nilai');
+    }
     public function alldata()
     {
         return DB::table("tb_nilai")->get();

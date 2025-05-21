@@ -8,6 +8,7 @@ use App\Http\Controllers\c_barang;
 use App\Http\Controllers\c_contact;
 use App\Http\Controllers\c_home;
 use App\Http\Controllers\c_nilai;
+use App\Http\Controllers\c_rinciannilai;
 use App\Http\Controllers\c_user;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/editnilai/{id_nilai}', [c_nilai::class, 'edit'])->name('admin.editnilai');
     Route::post('/admin/update/{id_nilai}', [c_nilai::class, 'update'])->name('admin.updatenilai');
     Route::get('/admin/hapusnilai/{id_nilai}', [c_nilai::class, 'hapus'])->name('admin.hapusnilai');
+
+    Route::get('/admin/detailnilai', [c_rinciannilai::class, 'tampildetailnilai'])->name('admin.detailnilai');
+    Route::get('/admin/tambahdetail', [c_rinciannilai::class, 'tambahdetailnilai'])->name('admin.tambahdetailnilai');
+    Route::get('/get-nama-mahasiswa/{nim}', [c_rinciannilai::class, 'getNamaMahasiswa'])->name('get.nama.mahasiswa');
+    Route::post('/admin/storedetail', [c_rinciannilai::class, 'store'])->name('admin.storedetail');
+    Route::get('/admin/editdetailnilai/{id_detail_nilai}', [c_rinciannilai::class, 'edit'])->name('admin.editdetailnilai');
+    Route::put('/admin/updatedetailnilai/{id_detail_nilai}', [c_rinciannilai::class, 'update'])->name('admin.updatedetailnilai');
+    Route::get('/admin/hapusdetailnilai/{id_detail_nilai}', [c_rinciannilai::class, 'hapus'])->name('admin.hapusdetailnilai');
+
     Route::get('/admin/dashboard', [c_admin::class, 'tampildashboard'])->name('admin.dashboard');
     Route::get('/dosen', [c_dosen::class, 'dosens']);
     Route::get('/dosen/detail/{id_dosen}', [c_dosen::class, 'detail']);

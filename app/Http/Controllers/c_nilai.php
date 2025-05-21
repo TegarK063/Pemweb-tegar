@@ -72,7 +72,12 @@ class c_nilai extends Controller
         if (!$nilai) {
             abort(404);
         }
-        return view('admin.v_detailnilai', compact('nilai'));
+        
+    // Ambil detail nilai berdasarkan id_nilai
+        $detailnilai = \App\Models\m_detailnilai::with('mahasiswa') // pastikan relasi 'mahasiswa' ada
+                    ->where('id_nilai', $id_nilai)
+                    ->get();
+        return view('admin.v_detailnilai', compact('nilai', 'detailnilai'));
     }
     // Mengubah nilai
     public function edit($id_nilai)

@@ -22,6 +22,9 @@ class m_mahasiswa extends Model
     public function kelas () {
         return $this->belongsTo(m_kelas::class, 'id_kelas', 'id_kelas');
     }
+    public function detailnilai () {
+        return $this->hasMany(m_detailnilai::class, 'nim');
+    }
 
     public function alldata()
     {

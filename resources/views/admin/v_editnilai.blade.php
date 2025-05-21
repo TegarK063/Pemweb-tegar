@@ -1,10 +1,6 @@
 @extends('layout.v_tamplate')
 @section('content')
-    <h1>Edit Mahasiswa</h1>
     <div class="card shadow mb-4">
-        <div class="card-header">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Data Mahasiswa</h6>
-        </div>
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Form Edit Nilai</h3>

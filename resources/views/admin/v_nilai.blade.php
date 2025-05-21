@@ -19,6 +19,7 @@
                             <th>Dosen</th>
                             <th>Mata Kuliah</th>
                             <th>Semester</th>
+                            <th>Tahun Akademik</th>
                             <th>Prodi</th>
                             <th>Jurusan</th>
                             <th>Komposisi Nilai Lain-Lain</th>
@@ -35,6 +36,7 @@
                                 <td>{{ $data->dosen->nama_dosen }}</td>
                                 <td>{{ $data->matakuliah->nama_matakuliah }}</td>
                                 <td>{{ $data->semester->semester }}</td>
+                                <td>{{ $data->tahunakademi->tahun_akademi }}</td>
                                 <td>{{ $data->jurusan->nama_jurusan }}</td>
                                 <td>{{ $data->prodi->nama_prodi }}</td>
                                 <td>{{ $data->komposisi_nilai_lain }}</td>
@@ -42,7 +44,7 @@
                                 <td>{{ $data->komposisi_nilai_uas }}</td>
                                 <td>
                                     <a href="{{ url('/admin/detailnilai/' . $data->id_nilai) }}"
-                                        class="btn btn-info">Detail</a>
+                                        class="btn btn-success">Rincian Detail Nilai</a>
                                     <a href="{{ url('/admin/editnilai/' . $data->id_nilai) }}"
                                         class="btn btn-warning">Edit</a>
                                     <!-- Trigger Modal -->
