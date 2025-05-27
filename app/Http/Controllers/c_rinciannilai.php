@@ -29,7 +29,8 @@ class c_rinciannilai extends Controller
     public function tampildetailnilai()
     {
         $detailnilai = $this->m_detailnilai->with('mahasiswa', 'nilai')->get(); // Eager loading relasi jurusan
-        return view('admin.v_detailnilai', compact('detailnilai'));
+        $nilai = \App\Models\m_nilai::with('jurusan', 'prodi', 'dosen', 'matakuliah', 'semester', 'tahunakademi')->first();
+        return view('admin.v_detailnilai', compact('detailnilai', 'nilai'));
     }
     // Menampilkan form tambah nilai
     public function tambahdetailnilai()
@@ -98,7 +99,7 @@ class c_rinciannilai extends Controller
             'id_nilai' => $request->id_nilai,
         ]);
 
-        return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil ditambahkan!');
+        return redirect()->route('admin.detailnilai', ['id_nilai' => $request->id_nilai])->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }
 
     // Menampilkan form edit nilai
@@ -141,17 +142,28 @@ class c_rinciannilai extends Controller
             'id_nilai' => $request->id_nilai,
         ]);
 
-        return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil diupdate!');
+        return redirect()->route('admin.detailnilai', ['id_nilai' => $request->id_nilai])->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }
     // Menghapus data detail nilai
     public function hapus($id_detail_nilai)
     {
+        // Cari data detail nilai
         $nilai = $this->m_detailnilai->find($id_detail_nilai);
+
         if ($nilai) {
+            // Simpan id_nilai sebelum hapus, supaya bisa dipakai redirect
+            $id_nilai = $nilai->id_nilai;
+
+            // Hapus data
             $nilai->delete();
-            return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil dihapus!');
+
+            // Redirect ke route dengan parameter id_nilai, dan kirim flash message
+            return redirect()->route('admin.detailnilai', ['id_nilai' => $id_nilai])
+                ->with('success', 'Data mahasiswa berhasil dihapus!');
         } else {
-            return redirect('/admin/nilai')->with('error', 'Data mahasiswa tidak ditemukan!');
+            // Kalau tidak ditemukan, redirect juga dengan pesan error
+            return redirect()->route('admin.detailnilai', ['id_nilai' => 0])
+                ->with('error', 'Data mahasiswa tidak ditemukan!');
         }
     }
 }
