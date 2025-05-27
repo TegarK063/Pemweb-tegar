@@ -50,7 +50,7 @@
                             <input type="number" name="uas" class="form-control" value="{{ old('uas', $detailnilai->uas) }}" required>
                         </div>
 
-                        <div class="item-list mb-3">
+                        {{-- <div class="item-list mb-3">
                             <label>Nilai Akhir</label>
                             <input type="number" name="nilai_akhir" class="form-control" value="{{ old('nilai_akhir', $detailnilai->nilai_akhir) }}" required>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="item-list mb-3">
                             <label>STATUS</label>
                             <input type="text" name="status" class="form-control" value="{{ old('status', $detailnilai->status) }}" required>
-                        </div>
+                        </div> --}}
 
                         <div class="item-list mb-3">
                             <label>KETERANGAN</label>

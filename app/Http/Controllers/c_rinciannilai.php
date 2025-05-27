@@ -38,21 +38,52 @@ class c_rinciannilai extends Controller
         $nilai = m_nilai::all();
         return view('admin.v_tambahrinciannilai', compact('mahasiswa', 'nilai'));
     }
+    // Menghitung nilai akhir, grade, dan status
+    private function hitungNilai($lain_lain, $uts, $uas)
+    {
+        $nilai_akhir = ($lain_lain + $uts + $uas) / 3;
+        $grade = '';
+        $status = '';
+
+        if ($nilai_akhir >= 85) {
+            $grade = 'A';
+            $status = 'Lulus';
+        } elseif ($nilai_akhir >= 75) {
+            $grade = 'B';
+            $status = 'Lulus';
+        } elseif ($nilai_akhir >= 65) {
+            $grade = 'C';
+            $status = 'Lulus';
+        } elseif ($nilai_akhir >= 50) {
+            $grade = 'D';
+            $status = 'Tidak Lulus';
+        } else {
+            $grade = 'E';
+            $status = 'Tidak Lulus';
+        }
+
+        return [
+            'nilai_akhir' => round($nilai_akhir, 2),
+            'grade' => $grade,
+            'status' => $status,
+        ];
+    }
     // Menambahkan detail nilai
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'nim' => 'required|required',
+            'nim' => 'required',
             'nama_mahasiswa' => 'required',
             'lain_lain' => 'required',
             'uts' => 'required',
             'uas' => 'required',
-            'nilai_akhir' => 'required',
-            'grade' => 'required',
-            'status' => 'required',
             'keterangan' => 'required',
             'id_nilai' => 'required',
         ]);
+
+        // Hitung nilai akhir, grade, dan status
+        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas);
 
         $this->m_detailnilai->create([
             'nim' => $request->nim,
@@ -60,15 +91,16 @@ class c_rinciannilai extends Controller
             'lain_lain' => $request->lain_lain,
             'uts' => $request->uts,
             'uas' => $request->uas,
-            'nilai_akhir' => $request->nilai_akhir,
-            'grade' => $request->grade,
-            'status' => $request->status,
+            'nilai_akhir' => $hasil['nilai_akhir'],
+            'grade' => $hasil['grade'],
+            'status' => $hasil['status'],
             'keterangan' => $request->keterangan,
             'id_nilai' => $request->id_nilai,
         ]);
 
         return redirect('/admin/nilai')->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }
+
     // Menampilkan form edit nilai
     public function edit($id_detail_nilai)
     {
@@ -83,19 +115,18 @@ class c_rinciannilai extends Controller
     public function update(Request $request, $id_detail_nilai)
     {
         $request->validate([
-            'nim' => 'required|required',
+            'nim' => 'required',
             'nama_mahasiswa' => 'required',
-            'lain_lain' => 'required',
-            'uts' => 'required',
-            'uas' => 'required',
-            'nilai_akhir' => 'required',
-            'grade' => 'required',
-            'status' => 'required',
+            'lain_lain' => 'required|numeric',
+            'uts' => 'required|numeric',
+            'uas' => 'required|numeric',
             'keterangan' => 'required',
             'id_nilai' => 'required',
         ]);
 
         $detailnilai = $this->m_detailnilai->find($id_detail_nilai);
+
+        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas);
 
         $detailnilai->update([
             'nim' => $request->nim,
@@ -103,9 +134,9 @@ class c_rinciannilai extends Controller
             'lain_lain' => $request->lain_lain,
             'uts' => $request->uts,
             'uas' => $request->uas,
-            'nilai_akhir' => $request->nilai_akhir,
-            'grade' => $request->grade,
-            'status' => $request->status,
+            'nilai_akhir' => $hasil['nilai_akhir'],
+            'grade' => $hasil['grade'],
+            'status' => $hasil['status'],
             'keterangan' => $request->keterangan,
             'id_nilai' => $request->id_nilai,
         ]);

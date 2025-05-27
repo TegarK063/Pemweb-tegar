@@ -50,24 +50,24 @@
                             <input type="number" name="uas" class="form-control" required>
                         </div>
 
-                        <div class="item-list mb-3">
+                        {{-- <div class="item-list mb-3">
                             <label>Nilai Akhir</label>
-                            <input type="number" name="nilai_akhir" class="form-control" required>
+                            <input type="number" name="nilai_akhir" class="form-control">
                         </div>
 
                         <div class="item-list mb-3">
                             <label>GRADE</label>
-                            <input type="text" name="grade" class="form-control" required>
+                            <input type="text" name="grade" class="form-control">
                         </div>
 
                         <div class="item-list mb-3">
                             <label>STATUS</label>
-                            <input type="text" name="status" class="form-control" required>
-                        </div>
+                            <input type="text" name="status" class="form-control">
+                        </div> --}}
 
                         <div class="item-list mb-3">
                             <label>KETERANGAN</label>
-                            <input type="text" name="keterangan" class="form-control" required>
+                            <input type="text" name="keterangan" class="form-control">
                         </div>
 
                         <div class="item-list mb-3">
