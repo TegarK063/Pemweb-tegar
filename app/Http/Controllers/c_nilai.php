@@ -68,7 +68,7 @@ class c_nilai extends Controller
     // Menampilkan detail nilai
     public function detailnilai($id_nilai)
     {
-        $nilai = $this->m_nilai->with('jurusan', 'prodi', 'dosen', 'matakuliah', 'semester', 'tahunakademi')->find($id_nilai);
+        $nilai = $this->m_nilai->with('jurusan', 'prodi', 'dosen', 'matakuliah.kelas', 'semester', 'tahunakademi')->find($id_nilai);
         if (!$nilai) {
             abort(404);
         }

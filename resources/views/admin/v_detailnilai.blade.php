@@ -62,6 +62,10 @@
                         <div>{{ $nilai->matakuliah->nama_matakuliah }}</div>
                     </div>
                     <div class="form-group">
+                        <label>Kelas :</label>
+                        <div>{{ $nilai->matakuliah->kelas->nama_kelas ?? 'Tidak ada kelas' }}</div>
+                    </div>
+                    <div class="form-group">
                         <label>Semester :</label>
                         <div>{{ $nilai->semester->semester }}</div>
                     </div>

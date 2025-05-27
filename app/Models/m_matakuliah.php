@@ -24,7 +24,7 @@ class m_matakuliah extends Model
     // satu mata kuliah punya banyak kelas
     public function kelas()
     {
-        return $this->hasMany(m_kelas::class, 'id_kelas', 'id_kelas');
+        return $this->belongsTo(m_kelas::class, 'id_kelas', 'id_kelas');
     }
     // satu mata kuliah punya banyak semester
     public function semester()
