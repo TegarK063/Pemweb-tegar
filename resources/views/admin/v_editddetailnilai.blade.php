@@ -70,7 +70,8 @@
                             <input type="text" name="keterangan" class="form-control" value="{{ old('keterangan', $detailnilai->keterangan) }}" required>
                         </div>
 
-                        <div class="item-list mb-3">
+                        <input type="hidden" name="id_nilai" value="{{ $detailnilai->id_nilai }}">
+                        {{-- <div class="item-list mb-3">
                             <label>ID Nilai</label>
                             <select name="id_nilai" class="form-control" required>
                                 <option value="">-- Pilih ID Nilai --</option>
@@ -81,7 +82,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="text-center">
                             <input type="submit" value="Update" class="btn btn-warning">

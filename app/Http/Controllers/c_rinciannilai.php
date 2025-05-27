@@ -33,10 +33,10 @@ class c_rinciannilai extends Controller
         return view('admin.v_detailnilai', compact('detailnilai', 'nilai'));
     }
     // Menampilkan form tambah nilai
-    public function tambahdetailnilai()
+    public function tambahdetailnilai($id_nilai)
     {
         $mahasiswa = m_mahasiswa::all();
-        $nilai = m_nilai::all();
+        $nilai = m_nilai::with('jurusan', 'prodi', 'dosen', 'matakuliah', 'semester', 'tahunakademi')->findOrFail($id_nilai);
         return view('admin.v_tambahrinciannilai', compact('mahasiswa', 'nilai'));
     }
     // Menghitung nilai akhir, grade, dan status
@@ -115,6 +115,7 @@ class c_rinciannilai extends Controller
     }
     public function update(Request $request, $id_detail_nilai)
     {
+        // dd($request->all());
         $request->validate([
             'nim' => 'required',
             'nama_mahasiswa' => 'required',

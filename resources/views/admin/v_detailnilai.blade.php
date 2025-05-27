@@ -93,7 +93,7 @@
 
                 <!-- Card footer -->
                 <div class="card-footer">
-                    <a href="{{ route('admin.tambahdetailnilai') }}" class="btn btn-primary ">Tambah Detail Nilai</a>
+                    <a href="{{ route('admin.tambahdetailnilai', ['id_nilai' => $nilai->id_nilai]) }}" class="btn btn-primary ">Tambah Detail Nilai</a>
                 </div>
             </form>
         </div>

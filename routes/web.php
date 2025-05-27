@@ -35,7 +35,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/hapusnilai/{id_nilai}', [c_nilai::class, 'hapus'])->name('admin.hapusnilai');
 
     Route::get('/admin/detailnilai', [c_rinciannilai::class, 'tampildetailnilai'])->name('admin.detailnilai');
-    Route::get('/admin/tambahdetail', [c_rinciannilai::class, 'tambahdetailnilai'])->name('admin.tambahdetailnilai');
+    Route::get('/admin/tambahdetail/{id_nilai}', [c_rinciannilai::class, 'tambahdetailnilai'])->name('admin.tambahdetailnilai');
     Route::get('/get-nama-mahasiswa/{nim}', [c_rinciannilai::class, 'getNamaMahasiswa'])->name('get.nama.mahasiswa');
     Route::post('/admin/storedetail', [c_rinciannilai::class, 'store'])->name('admin.storedetail');
     Route::get('/admin/editdetailnilai/{id_detail_nilai}', [c_rinciannilai::class, 'edit'])->name('admin.editdetailnilai');
