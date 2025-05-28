@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="nav-content d-flex justify-content-end mb-3">
-                    <a href="{{ route('admin.nilai') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ route('admin.detailnilai', ['id_nilai' => $nilai->id_nilai]) }}" class="btn btn-primary">Kembali</a>
                 </div>
 
                 <div class="form-edit-nilai">

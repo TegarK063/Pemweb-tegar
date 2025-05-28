@@ -40,22 +40,28 @@ class c_rinciannilai extends Controller
         return view('admin.v_tambahrinciannilai', compact('mahasiswa', 'nilai'));
     }
     // Menghitung nilai akhir, grade, dan status
-    private function hitungNilai($lain_lain, $uts, $uas)
+    private function hitungNilai($lain_lain, $uts, $uas, $nilai)
     {
-        $nilai_akhir = ($lain_lain + $uts + $uas) / 3;
+        $nilai_akhir = (($lain_lain * ($nilai->komposisi_nilai_lain / 100)) + ($uts * ($nilai->komposisi_nilai_uts / 100))+ ($uas * ($nilai->komposisi_nilai_uas / 100)));
         $grade = '';
         $status = '';
 
         if ($nilai_akhir >= 85) {
             $grade = 'A';
             $status = 'Lulus';
-        } elseif ($nilai_akhir >= 75) {
+        } elseif ($nilai_akhir >= 78) {
+            $grade = 'AB';
+            $status = 'Lulus';
+        } elseif ($nilai_akhir >= 70) {
             $grade = 'B';
             $status = 'Lulus';
-        } elseif ($nilai_akhir >= 65) {
-            $grade = 'C';
+        } elseif ($nilai_akhir >= 63) {
+            $grade = 'BC';
             $status = 'Lulus';
-        } elseif ($nilai_akhir >= 50) {
+        } elseif ($nilai_akhir >= 55) {
+            $grade = 'C';
+            $status = 'Tidak Lulus';
+        } elseif ($nilai_akhir >= 40) {
             $grade = 'D';
             $status = 'Tidak Lulus';
         } else {
@@ -83,8 +89,9 @@ class c_rinciannilai extends Controller
             'id_nilai' => 'required',
         ]);
 
+        $nilai = m_nilai::findOrFail($request->id_nilai);
         // Hitung nilai akhir, grade, dan status
-        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas);
+        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas, $nilai);
 
         $this->m_detailnilai->create([
             'nim' => $request->nim,
@@ -107,7 +114,7 @@ class c_rinciannilai extends Controller
     {
         $detailnilai = $this->m_detailnilai->with('mahasiswa', 'nilai')->find($id_detail_nilai);
         $mahasiswa = m_mahasiswa::all();
-        $nilai = m_nilai::all();
+        $nilai = $detailnilai->nilai;
         if (!$detailnilai) {
             abort(404);
         }
@@ -128,7 +135,9 @@ class c_rinciannilai extends Controller
 
         $detailnilai = $this->m_detailnilai->find($id_detail_nilai);
 
-        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas);
+        $nilai = m_nilai::findOrFail($request->id_nilai);
+        // Hitung nilai akhir, grade, dan status
+        $hasil = $this->hitungNilai($request->lain_lain, $request->uts, $request->uas, $nilai);
 
         $detailnilai->update([
             'nim' => $request->nim,
